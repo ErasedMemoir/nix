@@ -1,3 +1,8 @@
+# ==============================================================================
+# MODULE: main.nix
+# Description: Main configuration aggregator. Imports flake modules and
+# bootstraps Home Manager and Nix daemon settings.
+# ==============================================================================
 { inputs, config, ... }:
 {
   imports = with inputs; [
@@ -7,6 +12,9 @@
     disko.nixosModules.disko
   ];
 
+  # ----------------------------------------------------------------------------
+  # Home Manager Subsystem
+  # ----------------------------------------------------------------------------
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -17,6 +25,9 @@
     users.erased.imports = [ (inputs.import-tree "${inputs.self}/modules/home") ];
   };
 
+  # ----------------------------------------------------------------------------
+  # Nix Daemon Configuration
+  # ----------------------------------------------------------------------------
   nix = {
     channel.enable = false;
     optimise.automatic = true;

@@ -1,6 +1,11 @@
+# ==============================================================================
+# MODULE: packages.nix
+# Description: System-wide packages, daemons, and compatibility layers.
+# ==============================================================================
 { pkgs, ... }:
 {
   services = {
+  cloudflare-warp.enable = true;
     bpftune.enable = true;
     scx = {
       enable = true;

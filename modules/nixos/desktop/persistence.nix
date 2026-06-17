@@ -1,3 +1,8 @@
+# ==============================================================================
+# MODULE: persistence.nix
+# Description: Explicitly defines files and directories that must survive
+# the ephemeral root wipe sequence upon system boot.
+# ==============================================================================
 {
   preservation = {
     enable = true;
@@ -18,6 +23,7 @@
           directory = "/etc/nixos";
           user = "erased";
         }
+        "/var/lib/cloudflare-warp"
         "/etc/NetworkManager"
         "/var/lib/netbird"
         "/var/lib/nixos"

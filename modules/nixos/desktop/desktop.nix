@@ -1,3 +1,7 @@
+# ==============================================================================
+# MODULE: desktop.nix
+# Description: Display server, compositor, and audio subsystem configuration.
+# ==============================================================================
 { pkgs, ... }:
 {
   # Force apps to use Wayland by default

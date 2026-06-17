@@ -1,5 +1,13 @@
+# ==============================================================================
+# MODULE: system.nix
+# Description: Low-level system parameters, networking, identity management,
+# and kernel tuning.
+# ==============================================================================
 { pkgs, ... }:
 {
+  # ----------------------------------------------------------------------------
+  # Identity Management
+  # ----------------------------------------------------------------------------
   users = {
     mutableUsers = false;
     users.erased = {
@@ -11,11 +19,17 @@
     };
   };
 
+  # ----------------------------------------------------------------------------
+  # Networking
+  # ----------------------------------------------------------------------------
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
   };
 
+  # ----------------------------------------------------------------------------
+  # Bootloader and Kernel
+  # ----------------------------------------------------------------------------
   boot = {
     loader = {
       limine = {
@@ -43,4 +57,10 @@
   time.timeZone = "Europe/Rome";
   systemd.services.NetworkManager-wait-online.enable = false;
   security.sudo.extraConfig = "Defaults lecture=never,pwfeedback";
+
+  # ----------------------------------------------------------------------------
+  # Hardware Optimizations
+  # ----------------------------------------------------------------------------
+  # Proactive thermal management daemon to prevent CPU throttling
+  services.thermald.enable = true;
 }
