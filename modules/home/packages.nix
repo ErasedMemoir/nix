@@ -14,6 +14,7 @@
   ];
 
   programs = {
+    gh.enable = true;
     prismlauncher.enable = true;
     fastfetch.enable = true;
     mpv.enable = true;

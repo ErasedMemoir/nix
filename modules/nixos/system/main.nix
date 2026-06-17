@@ -18,8 +18,8 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    # overwriteBackup = true;
-    # backupFileExtension = "hmBackup";
+    overwriteBackup = true;
+    backupFileExtension = "hmBackup";
     extraSpecialArgs = { inherit inputs; };
     sharedModules = [ { home.stateVersion = config.system.stateVersion; } ];
     users.erased.imports = [ (inputs.import-tree "${inputs.self}/modules/home") ];
