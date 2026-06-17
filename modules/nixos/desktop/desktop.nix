@@ -1,18 +1,25 @@
 { pkgs, ... }:
 {
+  # Force apps to use Wayland by default
   environment.variables.NIXOS_OZONE_WL = 1;
 
   services = {
     desktopManager.plasma6.enable = true;
+
     displayManager = {
-      autoLogin.user = "vm";
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
+      autoLogin.user = "erased";
+      plasma-login-manager.enable = true;
+    };
+
+    # Enable PipeWire with ALSA and PulseAudio support
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
     };
   };
 
+  # Exclude unnecessary KDE packages
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     plasma-browser-integration
     khelpcenter
