@@ -12,7 +12,7 @@
   };
 
   networking = {
-    hostname = "nixos";
+    hostName = "nixos";
     networkmanager.enable = true;
   };
 

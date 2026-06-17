@@ -18,7 +18,7 @@
           directory = "/etc/nixos";
           user = "erased";
         }
-        "/etc/NetworkManager/system-connections"
+        "/etc/NetworkManager"
         "/var/lib/netbird"
         "/var/lib/nixos"
         "/var/lib/sbctl"
