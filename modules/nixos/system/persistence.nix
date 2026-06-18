@@ -1,16 +1,18 @@
 # ==============================================================================
 # MODULE: persistence.nix
-# Description: Explicitly defines files and directories that must survive
-# the ephemeral root wipe sequence upon system boot.
+# Description: Impermanence state definitions. Maps critical state files from
+# the persistent BTRFS /data subvolume to the ephemeral root on boot.
 # ==============================================================================
 {
   preservation = {
     enable = true;
     preserveAt."/data" = {
+      # Hide bind mounts from file managers to maintain a clean UI
       commonMountOptions = [
         "x-gvfs-hide"
         "x-gdu.hide"
       ];
+
       files = [
         {
           file = "/etc/machine-id";
@@ -34,6 +36,6 @@
     };
   };
 
-  # Service complains about missing machine-id, so we suppress it since we're preserving it in the initrd
+  # Suppress systemd warnings for machine-id handled during initrd execution
   systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
 }
