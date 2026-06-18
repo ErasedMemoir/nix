@@ -1,8 +1,4 @@
-# ==============================================================================
-# MODULE: main.nix
-# Description: Main configuration aggregator. Imports flake modules and
-# bootstraps Home Manager and Nix daemon settings.
-# ==============================================================================
+# system/main.nix - Main config aggregator, bootstraps HM & Nix daemon
 { inputs, config, ... }:
 {
   imports = with inputs; [

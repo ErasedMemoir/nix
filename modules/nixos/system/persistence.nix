@@ -1,31 +1,17 @@
-# ==============================================================================
-# MODULE: persistence.nix
-# Description: Impermanence state definitions. Maps critical state files from
-# the persistent BTRFS /data subvolume to the ephemeral root on boot.
-# ==============================================================================
+# system/persistence.nix - Impermanence state definitions
 {
   preservation = {
     enable = true;
     preserveAt."/data" = {
-      # Hide bind mounts from file managers to maintain a clean UI
-      commonMountOptions = [
-        "x-gvfs-hide"
-        "x-gdu.hide"
-      ];
-
+      commonMountOptions = [ "x-gvfs-hide" "x-gdu.hide" ];
+      
       files = [
-        {
-          file = "/etc/machine-id";
-          inInitrd = true;
-        }
+        { file = "/etc/machine-id"; inInitrd = true; }
       ];
 
       directories = [
-        {
-          directory = "/etc/nixos";
-          user = "erased";
-        }
-        "/var/lib/cloudflare-warp"
+        { directory = "/etc/nixos"; user = "erased"; }
+        "/var/lib/bluetooth" # Saves paired devices
         "/etc/NetworkManager"
         "/var/lib/netbird"
         "/var/lib/nixos"
@@ -33,9 +19,23 @@
         "/var/cache"
         "/var/log"
       ];
+      
+      users.erased = {
+        directories = [
+          ".ssh"
+          ".mozilla"
+          ".config/discord"
+          ".config/WebCord"
+          ".config/Code"
+          ".local/share/PrismLauncher"
+          ".local/state/wireplumber" # Saves audio volumes
+          "Documents"
+          "Downloads"
+          "Desktop"
+        ];
+      };
     };
   };
 
-  # Suppress systemd warnings for machine-id handled during initrd execution
   systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
 }

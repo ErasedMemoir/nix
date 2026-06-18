@@ -1,8 +1,4 @@
-# ==============================================================================
-# MODULE: disk.nix
-# Description: Declarative partition layout using Disko. Configures an
-# ephemeral BTRFS root to enforce the impermanence paradigm.
-# ==============================================================================
+# system/disk.nix - Disko disk layout and formatting
 { pkgs, ... }:
 {
   disko.devices.disk.main = {

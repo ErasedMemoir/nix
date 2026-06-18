@@ -1,18 +1,17 @@
-# ==============================================================================
-# MODULE: sway/mako.nix
-# Description: Minimalist, stateless notification daemon for Wayland.
-# ==============================================================================
+# sway/mako.nix - Minimalist, stateless notification daemon
 {
   services.mako = {
     enable = true;
-    font = "JetBrainsMono Nerd Font 11";
-    padding = "15";
-    margin = "10";
-    defaultTimeout = 5000;
-    backgroundColor = "#1e1e2e";
-    textColor = "#cdd6f4";
-    borderColor = "#89b4fa";
-    borderSize = 2;
-    borderRadius = 5;
+    settings = {
+      font = "JetBrainsMono Nerd Font 11";
+      padding = "15";
+      margin = "10";
+      default-timeout = 5000;
+      background-color = "#000000";
+      text-color = "#ffffff";
+      border-color = "#888888";
+      border-size = 2;
+      border-radius = 5;
+    };
   };
 }
