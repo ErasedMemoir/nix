@@ -10,11 +10,12 @@
   services = {
     desktopManager.plasma6.enable = true;
 
-    displayManager = {
-      autoLogin.user = "erased";
-      plasma-login-manager.enable = true;
+    displayManager ={
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
     };
-
     # Enable PipeWire with ALSA and PulseAudio support
     pipewire = {
       enable = true;
