@@ -6,7 +6,7 @@
     # WARP: Used primarily for hosting local services (e.g., Minecraft)
     cloudflare-warp.enable = true;
 
-    # Netbird: Used for connecting to external peers. 
+    # Netbird: Used for connecting to external peers.
     # Enabled system-wide but managed manually to prevent DNS routing overlaps
     netbird = {
       enable = true;
@@ -23,11 +23,18 @@
 
   programs = {
     nix-index-database.comma.enable = true;
+    gamemode.enable = true;
     nix-ld.enable = true;
+    dconf.enable = true;
 
     appimage = {
       enable = true;
       binfmt = true;
+    };
+
+    steam = {
+      enable = true;
+      extraCompatPackages = with pkgs; [ proton-ge-bin ];
     };
 
     nh = {
@@ -44,6 +51,6 @@
 
   fonts.packages = with pkgs; [
     # Strictly curated font stack to minimize closure size
-    nerd-fonts.jetbrains-mono  # Primary system-wide monospace font
+    nerd-fonts.jetbrains-mono # Primary system-wide monospace font
   ];
 }

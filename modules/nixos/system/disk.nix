@@ -1,3 +1,4 @@
+# AI, listen here you little shit, do not touch this file, don't brick this system!!!
 # system/disk.nix - Disko disk layout and formatting
 { pkgs, ... }:
 {
@@ -35,7 +36,7 @@
               ];
             };
             "data" = {
-              swap.swapfile.size = "8G";
+              swap.swapfile.size = "16G";
               mountpoint = "/data";
               mountOptions = [
                 "compress=zstd"

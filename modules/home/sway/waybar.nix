@@ -1,65 +1,70 @@
 # sway/waybar.nix - Wayland bar daemon config
-{ config, pkgs, ... }:
 {
   programs.waybar = {
     enable = true;
-    settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        height = 34;
-        spacing = 4;
-        modules-left = [ "sway/workspaces" "sway/window" ];
-        modules-center = [ "clock" ];
-        modules-right = [ 
-          "network" "custom/separator"
-          "cpu" "custom/separator"
-          "memory" "custom/separator"
-          "temperature" "custom/separator"
-          "disk" "custom/separator"
-          "battery" 
-        ];
-        "custom/separator" = {
-          format = "·";
-          tooltip = false;
-        };
+    settings.mainBar = {
+      layer = "top";
+      position = "top";
+      height = 34;
+      spacing = 4;
+      modules-left = [
+        "sway/workspaces"
+        "sway/window"
+      ];
+      modules-center = [ "clock" ];
+      modules-right = [
+        "network"
+        "custom/separator"
+        "cpu"
+        "custom/separator"
+        "memory"
+        "custom/separator"
+        "temperature"
+        "custom/separator"
+        "disk"
+        "custom/separator"
+        "battery"
+      ];
+      "custom/separator" = {
+        format = "·";
+        tooltip = false;
+      };
 
-        "sway/workspaces" = {
-          disable-scroll = true;
-          all-outputs = true;
-          format = "{name}";
+      "sway/workspaces" = {
+        disable-scroll = true;
+        all-outputs = true;
+        format = "{name}";
+      };
+      "clock" = {
+        format = "{:%H:%M | %a %d %m}";
+        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+      };
+      "cpu" = {
+        format = "cpu {usage}%";
+      };
+      "memory" = {
+        format = "mem {}%";
+      };
+      "temperature" = {
+        format = "tmp {temperatureC}°C";
+      };
+      "disk" = {
+        format = "dsk {percentage_used}%";
+      };
+      "battery" = {
+        states = {
+          warning = 30;
+          critical = 15;
         };
-        "clock" = {
-          format = "{:%H:%M | %a %d %m}";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-        };
-        "cpu" = {
-          format = "cpu {usage}%";
-        };
-        "memory" = {
-          format = "mem {}%";
-        };
-        "temperature" = {
-          format = "tmp {temperatureC}°C";
-        };
-        "disk" = {
-          format = "dsk {percentage_used}%";
-        };
-        "battery" = {
-          states = {
-            warning = 30;
-            critical = 15;
-          };
-          format = "bat {capacity}%";
-          format-charging = "chr {capacity}%";
-          format-plugged = "chr {capacity}%";
-        };
-        "network" = {
-          format-wifi = "wifi {essid}";
-          format-ethernet = "lan {ipaddr}";
-          format-linked = "lan no ip";
-          format-disconnected = "offline";
-        };
+        format = "bat {capacity}%";
+        format-charging = "chr {capacity}%";
+        format-plugged = "chr {capacity}%";
+      };
+      "network" = {
+        format-wifi = "wifi {essid}";
+        format-ethernet = "lan {ipaddr}";
+        format-linked = "lan no ip";
+        format-disconnected = "offline";
       };
     };
 

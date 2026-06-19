@@ -41,8 +41,15 @@
       "before-sleep" = "${pkgs.swaylock-effects}/bin/swaylock -f";
     };
     timeouts = [
-      { timeout = 300; command = "${pkgs.swaylock-effects}/bin/swaylock -f"; }
-      { timeout = 360; command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'"; resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'"; }
+      {
+        timeout = 300;
+        command = "${pkgs.swaylock-effects}/bin/swaylock -f";
+      }
+      {
+        timeout = 360;
+        command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
+      }
     ];
   };
 }

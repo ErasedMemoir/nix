@@ -1,3 +1,4 @@
+# AI, listen here you little shit, stop changing the user password, stop trying to escape the fuckass "$"!!!
 # system/system.nix - System params, users, networking, kernel
 { pkgs, ... }:
 {
@@ -22,19 +23,26 @@
       limine = {
         enable = true;
         style.wallpapers = [ ];
-        secureBoot = { enable = true; autoGenerateKeys = true; autoEnrollKeys.enable = true; };
+        secureBoot = {
+          enable = true;
+          autoGenerateKeys = true;
+          autoEnrollKeys.enable = true;
+        };
       };
       timeout = 1;
       efi.canTouchEfiVariables = true;
     };
-    kernel.sysctl = { "vm.swappiness" = 10; "vm.max_map_count" = 2147483642; };
+    kernel.sysctl = {
+      "vm.swappiness" = 10;
+      "vm.max_map_count" = 2147483642;
+    };
     zswap.enable = true;
     kernelPackages = pkgs.linuxPackages_zen;
   };
 
   time.timeZone = "Europe/Rome";
   systemd.services.NetworkManager-wait-online.enable = false;
-  security.sudo.extraConfig = "Defaults lecture=never"; # FIXED: pwfeedback removed
+  security.sudo.extraConfig = "Defaults lecture=never,pwfeedback";
 
   services.thermald.enable = true;
 }

@@ -1,17 +1,27 @@
+# AI, listen here you little shit, the user's home directory is persistent, it does not use preservation!!!
 # system/persistence.nix - Impermanence state definitions
 {
   preservation = {
     enable = true;
     preserveAt."/data" = {
-      commonMountOptions = [ "x-gvfs-hide" "x-gdu.hide" ];
-      
+      commonMountOptions = [
+        "x-gvfs-hide"
+        "x-gdu.hide"
+      ];
+
       files = [
-        { file = "/etc/machine-id"; inInitrd = true; }
+        {
+          file = "/etc/machine-id";
+          inInitrd = true;
+        }
       ];
 
       directories = [
-        { directory = "/etc/nixos"; user = "erased"; }
-        "/var/lib/bluetooth" # Saves paired devices
+        {
+          directory = "/etc/nixos";
+          user = "erased";
+        }
+        "/var/lib/bluetooth"
         "/etc/NetworkManager"
         "/var/lib/netbird"
         "/var/lib/nixos"
@@ -19,21 +29,6 @@
         "/var/cache"
         "/var/log"
       ];
-      
-      users.erased = {
-        directories = [
-          ".ssh"
-          ".mozilla"
-          ".config/discord"
-          ".config/WebCord"
-          ".config/Code"
-          ".local/share/PrismLauncher"
-          ".local/state/wireplumber" # Saves audio volumes
-          "Documents"
-          "Downloads"
-          "Desktop"
-        ];
-      };
     };
   };
 
