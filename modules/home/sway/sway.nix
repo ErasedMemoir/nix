@@ -85,7 +85,7 @@
 
           # --- Application Shortcuts ---
           "${mod}+b" = "exec firefox";
-          "${mod}+c" = "exec webcord";
+          "${mod}+c" = "exec discord";
           "${mod}+f" = "exec thunar";
 
           # --- Hardware Control ---
