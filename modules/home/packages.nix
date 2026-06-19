@@ -12,6 +12,7 @@
     slurp
     grim
     rar
+    android-tools
   ];
 
   programs = {

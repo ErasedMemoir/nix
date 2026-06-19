@@ -12,9 +12,6 @@
         User = "root";
         IdentityFile = "~/.ssh/remarkable_key";
       };
-      "*" = {
-        SendEnv = "LANG LC_*";
-      };
     };
   };
 }
