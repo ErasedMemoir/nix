@@ -13,6 +13,7 @@
 
     # Kernel Scheduling & Auto-tuning
     bpftune.enable = true;
+    gvfs.enable = true;
     scx = {
       enable = true;
       scheduler = "scx_lavd";
