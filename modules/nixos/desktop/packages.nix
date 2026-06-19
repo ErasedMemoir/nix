@@ -11,6 +11,8 @@
       package = pkgs.unstable.netbird;
     };
 
+    power-profiles-daemon.enable = true;
+
     # Kernel Scheduling & Auto-tuning
     bpftune.enable = true;
     gvfs.enable = true;

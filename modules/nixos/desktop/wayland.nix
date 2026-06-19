@@ -7,6 +7,7 @@
   # Security shit
   security = {
     pam.services.greetd.enableGnomeKeyring = true;
+    pam.services.swaylock = {};
     polkit.enable = true;
   };
 

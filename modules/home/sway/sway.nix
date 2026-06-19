@@ -1,5 +1,5 @@
 # sway/default.nix - Core WM logic, hardware inputs, keybindings
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   wayland.windowManager.sway = {
     enable = true;
@@ -81,7 +81,17 @@
           "${mod}+Return" = "exec ${term}";
           "${mod}+d" = "exec ${menu}";
           "${mod}+Shift+q" = "kill";
-          "${mod}+Shift+c" = "reload";
+          "${mod}+Shift+r" = "reload";
+          
+          # Minimalist Rofi Power Menu
+          "${mod}+Shift+e" = "exec ${pkgs.writeShellScript "powermenu" ''
+            chosen=$(echo -e "Logout\nReboot\nShutdown" | rofi -dmenu -i -theme-str 'listview {lines: 3; require-input: false;} inputbar { enabled: false; }')
+            case "$chosen" in
+              "Logout") swaymsg exit ;;
+              "Reboot") systemctl reboot ;;
+              "Shutdown") systemctl poweroff ;;
+            esac
+          ''}";
 
           # --- Application Shortcuts ---
           "${mod}+b" = "exec firefox";

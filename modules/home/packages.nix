@@ -13,6 +13,7 @@
     grim
     rar
     android-tools
+    file-roller
   ];
 
   programs = {
