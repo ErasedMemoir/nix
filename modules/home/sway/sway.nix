@@ -1,10 +1,5 @@
 # sway/default.nix - Core WM logic, hardware inputs, keybindings
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 {
   wayland.windowManager.sway = {
     enable = true;
@@ -19,12 +14,11 @@
 
       # Hardware input definitions
       input = {
+        "type:keyboard".xkb_layout = "it";
         "type:touchpad" = {
           tap = "enabled";
           natural_scroll = "enabled";
         };
-        # Enforce Italian layout globally
-        "type:keyboard".xkb_layout = "it";
       };
 
       # Set wallpaper
@@ -108,23 +102,6 @@
           # 2. Edit Capture: Select region -> Pipe to Swappy graphical editor
           "Print" = ''exec grim -g "$(slurp)" - | swappy -f -'';
         };
-    };
-  };
-
-  # Declarative background daemon for Polkit GUI authentication
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    Install.WantedBy = [ "graphical-session.target" ];
-    Unit = {
-      Description = "polkit-gnome-authentication-agent-1";
-      Wants = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      TimeoutStopSec = 10;
-      Type = "simple";
-      RestartSec = 1;
     };
   };
 }

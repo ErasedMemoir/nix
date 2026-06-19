@@ -43,6 +43,4 @@
   time.timeZone = "Europe/Rome";
   systemd.services.NetworkManager-wait-online.enable = false;
   security.sudo.extraConfig = "Defaults lecture=never,pwfeedback";
-
-  services.thermald.enable = true;
 }

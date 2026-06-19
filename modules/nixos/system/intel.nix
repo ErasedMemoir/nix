@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  services.thermald.enable = true;
+
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
