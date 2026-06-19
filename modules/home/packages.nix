@@ -30,6 +30,6 @@
 
   services.cliphist = {
     enable = true;
-    systemdTargets = [ "sway-session.target" ];
+    systemdTargets = [ "graphical-session.target" ];
   };
 }
