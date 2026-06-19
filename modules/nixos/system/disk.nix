@@ -81,6 +81,7 @@
       mount -t btrfs /dev/disk/by-partlabel/disk-main-system /tmp
       btrfs subvolume delete --recursive /tmp/root
       btrfs subvolume create /tmp/root
+      rm -rf /*
     '';
   };
 }
